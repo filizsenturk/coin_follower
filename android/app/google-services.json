@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "24102179978",
+    "project_id": "coinfollower",
+    "storage_bucket": "coinfollower.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24102179978:android:0e3831baf1976859618973",
+        "android_client_info": {
+          "package_name": "com.example.coin_follower"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24102179978-rbe4l2rql2gfgdk25beoegeb3e1b1d39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAau-w4SxCPsduIMsENi0gpKxQNNiNzX28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24102179978-rbe4l2rql2gfgdk25beoegeb3e1b1d39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
