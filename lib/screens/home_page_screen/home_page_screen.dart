@@ -3,9 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coin_follower/constants/strings.dart';
 import 'package:coin_follower/local_helper/preferecences_helper.dart';
 import 'package:coin_follower/screens/coins_screen/coins_screen.dart';
+import 'package:coin_follower/screens/favourites_screen/favourites_screen.dart';
 import 'package:coin_follower/screens/profile_screen/edit_profile_screen.dart';
 import 'package:coin_follower/screens/profile_screen/profile_screen.dart';
 import 'package:coin_follower/screens/registration_screens/auth_screen/auth_screen.dart';
+import 'package:coin_follower/utils/appcolor.dart';
 import 'package:coin_follower/utils/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -52,19 +54,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: AppColors.lightBackgroundColor,
       appBar: AppBar(actions: [
         buildUserInfo(),
         buildSignOut(),
       ],),
-      body:CoinsScreen(coinList:Strings.coinsList,isFavouriteScreen: _selectedIndex==0 ? false : true,),
+      body:
+      CoinsScreen(
+        isFavouriteScreen: _selectedIndex==0 ? false : true,),
       bottomNavigationBar: BottomNavigationBar(
         items: const<BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.currency_bitcoin,),label:"'Coins"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_outline_outlined,),label:"Favorites"),
+          BottomNavigationBarItem(icon: Icon(Icons.currency_bitcoin,),label:Strings.cCoin),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_outline_outlined,),label:Strings.cFavorites),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amberAccent,
+        selectedItemColor:AppColors.selectedItemColor,
         onTap: _onItemTapped,
       ),
     );

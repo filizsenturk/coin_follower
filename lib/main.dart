@@ -1,6 +1,7 @@
 import 'package:coin_follower/routes.dart';
 import 'package:coin_follower/screens/home_page_screen/home_page_screen.dart';
 import 'package:coin_follower/screens/registration_screens/auth_screen/auth_screen.dart';
+import 'package:coin_follower/utils/appcolor.dart';
 import 'package:coin_follower/utils/utils.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.amber
       ),
       home:
       StreamBuilder<User?>(

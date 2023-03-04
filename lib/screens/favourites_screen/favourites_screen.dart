@@ -1,4 +1,4 @@
-
+/*
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coin_follower/constants/strings.dart';
 import 'package:coin_follower/local_helper/preferecences_helper.dart';
@@ -20,6 +20,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   final firestore = FirebaseFirestore.instance;
 
   Future<FollowedCoins?> readFollowedCoins()async{
+    log.i("Favourites Screen read FollowedCoins Started");
     final docID = await PreferencesHelper.get(Strings.cEmail);
     final docUser = FirebaseFirestore.instance.collection('users').doc(docID);
     final snapshot = await docUser.get();
@@ -47,12 +48,12 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
         }else if(snapshot.hasData){
         List followedList =  snapshot.data!.followedCoinsList;
         log.i("followed List is setted as "+snapshot.data!.followedCoinsList.toString());
-          return CoinsScreen(coinList: followedList,isFavouriteScreen: true,);
+          return CoinsScreen(isFavouriteScreen: true,);
         }else{
           return CircularProgressIndicator();
         }
         });
   }
 }
-
+*/
 

@@ -9,6 +9,14 @@ class Strings{
   static const String cResetPassword = "Reset Password";
   static const String cEmailSend = "Email Send to reset password.";
   static const String cPreferencesHelper="Preferences Helper";
+  static const String cCoin="Coin";
+  static const String cFavorites = "Favorites";
+  static const String cName='Name';
+  static const String cSurName='Surname';
+  static const String cCountry='Country';
+  static const String cBirthday='Birthday';
+  static const String cSend = 'Send';
+
 
 
   // Images
@@ -18,7 +26,7 @@ class Strings{
  static const List<String> coinsList= [
        "bitcoin",
        'solana',
-       'ethereum',
+   //    'ethereum',
        'tether',
    //   'cardano',
    //   'dogecoin',

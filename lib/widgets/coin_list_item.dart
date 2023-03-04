@@ -9,7 +9,8 @@ import 'package:sizer/sizer.dart';
 class CoinListItem extends StatelessWidget {
   final Coin coin;
 
-  const CoinListItem({Key? key,
+  const CoinListItem({
+    Key? key,
     required this.coin,
   }) : super(key: key);
 
@@ -18,18 +19,19 @@ class CoinListItem extends StatelessWidget {
     return Container(
       width: 100.w,
       height: 15.h,
-      padding: EdgeInsets.only(left: 3.w,right: 3.w,top: 1.h,bottom: 1.h),
+      padding: EdgeInsets.only(left: 3.w, right: 3.w, top: 1.h, bottom: 1.h),
       child: GestureDetector(
-        onTap: (){
-          Navigator.of(context).pushNamed(CoinsDetailScreen.routeName,arguments: CoinDetailsScreenArguments(coin));
+        onTap: () {
+          Navigator.of(context).pushNamed(CoinsDetailScreen.routeName,
+              arguments: CoinDetailsScreenArguments(coin));
         },
         child: Card(
           elevation: 5,
           child: Padding(
-            padding:  EdgeInsets.only(left: 3.w,right: 3.w,top: 1.h,bottom: 1.h),
+            padding:
+                EdgeInsets.only(left: 3.w, right: 3.w, top: 1.h, bottom: 1.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
               children: [
                 Row(
                   children: [
@@ -60,38 +62,38 @@ class CoinListItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(coin.name,
-        style: GoogleFonts.montserrat(
-          fontSize: 16.sp,
-        ),),
-        Text(coin.symbol.toUpperCase(),
-        style: GoogleFonts.montserrat(
-          fontSize: 12.sp
-        ),)
+        Text(
+          coin.name,
+          style: GoogleFonts.montserrat(
+            fontSize: 16.sp,
+          ),
+        ),
+        Text(
+          coin.symbol.toUpperCase(),
+          style: GoogleFonts.montserrat(fontSize: 12.sp),
+        )
       ],
     );
   }
 
   Column buildNumbersColumn() {
-    return Column(
+    return  Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text("${NumberFormat.simpleCurrency().format(coin.priceVsUsd)}",
-        style: GoogleFonts.montserrat(
-          fontSize: 14.sp
-        ),),
-        Text(" % "+NumberFormat("####.##").format(coin.priceChange24h),
-        style: GoogleFonts.montserrat(
-          color:
-          coin.priceChange24h.isNegative ? AppColors.downColor : AppColors.upColor,
-          fontSize: 14.sp
+        Text(
+          "${NumberFormat.simpleCurrency().format(coin.priceVsUsd)}",
+          style: GoogleFonts.montserrat(fontSize: 14.sp),
         ),
+        Text(
+          " % " + NumberFormat("####.##").format(coin.priceChange24h),
+          style: GoogleFonts.montserrat(
+              color: coin.priceChange24h.isNegative
+                  ? AppColors.downColor
+                  : AppColors.upColor,
+              fontSize: 14.sp),
         )
       ],
     );
   }
 }
-
-
-

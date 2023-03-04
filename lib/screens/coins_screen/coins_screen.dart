@@ -3,23 +3,17 @@ import 'package:coin_follower/constants/api_client.dart';
 import 'package:coin_follower/constants/strings.dart';
 import 'package:coin_follower/local_helper/preferecences_helper.dart';
 import 'package:coin_follower/models/coin.dart';
+import 'package:coin_follower/screens/home_page_screen/home_page_screen.dart';
+import 'package:coin_follower/utils/appcolor.dart';
 import 'package:coin_follower/utils/logger.dart';
 import 'package:coin_follower/widgets/coin_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class CoinsScreen extends StatefulWidget {
-  List coinList;
   bool isFavouriteScreen;
 
-  CoinsScreen(
-      {Key? key,
-        required this.coinList,
-        required this.isFavouriteScreen
-
-      })
-      : super(key: key);
+  CoinsScreen({Key? key, required this.isFavouriteScreen}) : super(key: key);
 
   @override
   State<CoinsScreen> createState() => _CoinsScreenState();
@@ -38,14 +32,15 @@ class _CoinsScreenState extends State<CoinsScreen> {
           "homepage initialize and my snapshot is ${snapshot.data()!['followed']}");
       setState(() {
         myFollowedCoinsList = snapshot.data()!['followed'];
-        print("myFollowedCoin List is $myFollowedCoinsList");
       });
     }
   }
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 5),(){return getFireBaseData();});
+    Future.delayed(const Duration(seconds: 5), () {
+      return getFireBaseData();
+    });
     getFireBaseData();
     super.initState();
   }
@@ -53,26 +48,21 @@ class _CoinsScreenState extends State<CoinsScreen> {
   @override
   void dispose() {
     getFireBaseData();
-    // TODO: implement dispose
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return  FutureBuilder<List<Coin>>(
-        future: ApiClient().getCoins(Strings.coinsList),
+    return FutureBuilder<List<Coin>>(
+        future: widget.isFavouriteScreen
+            ? ApiClient().getCoins(myFollowedCoinsList)
+            : ApiClient().getCoins(Strings.coinsList),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             log.i(" Has snapshot data :  ${snapshot.hasData}");
             return const CircularProgressIndicator();
           } else {
             List<Coin> coins = snapshot.data!;
-            if (coins == null) {
-              log.i("coin is null");
-              return const Center(
-                child: Text("Error getting data"),
-              );
-            } else {
               return ListView.builder(
                   itemCount: coins.length,
                   itemBuilder: (context, index) {
@@ -85,13 +75,13 @@ class _CoinsScreenState extends State<CoinsScreen> {
                             onPressed: (context) {
                               widget.isFavouriteScreen
                                   ? onUnfollowingCoin(coins[index].id)
-                                  :
-                              onFollowingCoin(coins[index].id);
+                                  : onFollowingCoin(coins[index].id);
                             },
-                            backgroundColor: Colors.black38,
-                            foregroundColor: Colors.white,
-                            icon: widget.isFavouriteScreen ? Icons
-                                .remove_circle_outlined : Icons.favorite,
+                            backgroundColor: AppColors.followBackgroundColor,
+                            foregroundColor: AppColors.backgroundColor,
+                            icon: widget.isFavouriteScreen
+                                ? Icons.remove_circle_outlined
+                                : Icons.favorite,
                             label: widget.isFavouriteScreen
                                 ? "Unfollow"
                                 : "Follow",
@@ -103,25 +93,23 @@ class _CoinsScreenState extends State<CoinsScreen> {
                       ),
                     );
                   });
-            }
           }
         });
-
-
   }
 
   onUnfollowingCoin(String id) {
     myFollowedCoinsList.remove(id);
-    print("myFollowedCoinsList is : " + myFollowedCoinsList.toString());
     setFirebaseData(myFollowedCoinsList);
-  //  setState(() {
-  //    widget.coinList = myFollowedCoinsList;
-  //  });
+    Navigator.of(context).pushNamed(HomePage.routeName);
   }
 
   void onFollowingCoin(String id) {
     myFollowedCoinsList.add(id);
-    setFirebaseData(myFollowedCoinsList);
+    List coinIds = [];
+    for (int i = 0; i < myFollowedCoinsList.length; i++) {
+      return coinIds.add(myFollowedCoinsList[i].id);
+    }
+    setFirebaseData(coinIds);
   }
 
   void setFirebaseData(List coinList) async {

@@ -4,6 +4,7 @@ import 'package:coin_follower/constants/strings.dart';
 import 'package:coin_follower/local_helper/preferecences_helper.dart';
 import 'package:coin_follower/screens/home_page_screen/home_page_screen.dart';
 import 'package:coin_follower/screens/profile_screen/send_btn.dart';
+import 'package:coin_follower/utils/appcolor.dart';
 import 'package:coin_follower/widgets/profile_text_fields.dart';
 import 'package:coin_follower/widgets/profile_texts.dart';
 import 'package:coin_follower/widgets/user.dart';
@@ -73,7 +74,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       padding: EdgeInsets.only(bottom: 1.h),
       child: Row(
         children: [
-          ProfileTexts(text: "Name"),
+          ProfileTexts(text: Strings.cName),
           ProfileTextFields(controller: nameController)
         ],
       ),
@@ -85,7 +86,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       padding: EdgeInsets.only(bottom: 1.h),
       child: Row(
         children: [
-          ProfileTexts(text: "Surname"),
+          ProfileTexts(text: Strings.cSurName),
           ProfileTextFields(controller: surnameController)
         ],
       ),
@@ -97,7 +98,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       padding: EdgeInsets.only(bottom: 1.h),
       child: Row(
         children: [
-          ProfileTexts(text: "Birthday"),
+          ProfileTexts(text: Strings.cBirthday),
           buildCalender()
           //  ProfileTextFields(controller: birthDayController)
         ],
@@ -110,7 +111,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       padding: EdgeInsets.only(bottom: 1.h),
       child: Row(
         children: [
-          ProfileTexts(text: "Country "),
+          ProfileTexts(text: Strings.cCountry),
         ],
       ),
     );
@@ -158,8 +159,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       lastDate: DateTime.now(),
       selectedDayHighlightColor: Colors.amber[900],
       weekdayLabels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      weekdayLabelTextStyle: const TextStyle(
-        color: Colors.black87,
+      weekdayLabelTextStyle:  TextStyle(
+        color: AppColors.textColor,
         fontWeight: FontWeight.bold,
       ),
       firstDayOfWeek: 1,

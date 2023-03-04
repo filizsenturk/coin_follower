@@ -1,3 +1,4 @@
+import 'package:coin_follower/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -31,7 +32,7 @@ class _SendBtnState extends State<SendBtn> {
           ]
         ),
         child: Center(child:
-        Text("Send",style: GoogleFonts.montserrat(
+        Text(Strings.cSend,style: GoogleFonts.montserrat(
           color: Colors.white,
           fontSize: 16.sp,
           fontWeight: FontWeight.bold
